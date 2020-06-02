@@ -8,13 +8,15 @@ function checkPassword() {
             throw new \Exception("Password must be a string");
             return false;
         }
-        if(strlen($password) !== $i){
+        elseif(strlen($password) !== $i){
             throw new \Exception("Password does not match requested length (asked $i characters, got " .strlen($password).")");
             return false;
         }
-        if (!preg_match("/^(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%])[0-9A-Za-z!@#$%]{".$i."}$/", $password)) {
+        elseif (!preg_match("/^(?=.*\d)(?=.*[A-Za-z])(?=.*[!@#$%])[0-9A-Za-z!@#$%]{".$i."}$/", $password)) {
             throw new \Exception("Password must contain at least one uppercase letter, one lowercase letter, one number digit and one special character, got $password");
             return false;
+        } else {
+            return true;
         }
     }
 }
